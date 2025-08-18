@@ -1,31 +1,24 @@
-// Online C++ compiler to run C++ program online
-#include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <iostream>
 using namespace std;
 int main() {
     // Write C++ code here
-    int h0, h1;
-    h0 = fork();
-    if(h0 == 0){// HIJO 0
-        cout << "HIJO: Hola mundo-> PID: ";
-        cout << getpid()<< " PPID: ";
-        cout << getppid()<<"\n";
-    }
-    else{//PADRE
-        sleep(1);
-        if((h1 = fork()) == 0){//HIJO 1
-            cout << "H1: Hola mundo-> PID: ";
-            cout << getpid()<< " PPID: ";
-            cout << getppid()<<"\n";
-            
+    
+    int ph, ph2;
+    fork();
+    if( (ph = fork()) == 0){//HIJO
+    cout<<"HIJO 1 pid: "<<getpid()<<" ppid: "<<getppid()<<"\n"; 
+    }else{//PADRE
+    cout << "PADRE pid: "<<getpid()<<" ppid: "<<getppid()<<"\n";
+    cout <<"Cree un hijo con pid: "<<ph<<"\n";
+        if((ph2 = fork()) == 0){//HIJO 2
+            cout<<"HIJO 2 pid: "<<getpid()<<" ppid: "<<getppid()<<"\n"; 
+        }else{//PADRE
+            cout<<"PADRE pid: "<<getpid()<<" ppid: "<<getppid()<<"\n"; 
         }
-        else{
-            sleep(1);
-            cout << "PADR:Hola mundo->PID: ";
-            cout << getpid()<< " PPID: ";
-            cout << getppid()<<"\n";
-        }
-            
     }
+
+
+    return 0;
+}
